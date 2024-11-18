@@ -1,0 +1,21 @@
+.left-menu {
+    width: 250px;
+    background-color: gray;
+}
+
+.left-menu ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.left-menu li {
+    font-size: large;
+    padding: 10px 20px;
+}
+
+.left-menu li:hover {
+    cursor: pointer;
+    color: aquamarine;
+    background-color: blue;
+    padding: 10px 20px;
+}
