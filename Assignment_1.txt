@@ -1,0 +1,14 @@
+Automate test cases and use,
+    // ID Locator - For First and Last name
+
+    // Name Locator - For gender
+
+    // Class Locator - For checkbox
+
+    // CSS Selector - For address line
+
+    // ID Locator - For dropdown city
+
+    // Class Locator - for textarea
+
+    // Button using ID
