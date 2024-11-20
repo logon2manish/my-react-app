@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import "./myStyle.css"
 const WebForm = () => {
   const [formData, setFormData] = useState({});
 
@@ -21,7 +21,7 @@ const WebForm = () => {
   };
 
   return (
-    <form id="webform" onSubmit={handleSubmit}>
+    <form id="webform" onSubmit={handleSubmit} className='form-container'>
       <div className="form-group">
         <label htmlFor="firstName">First Name:</label>
         <input
@@ -124,10 +124,10 @@ const WebForm = () => {
         ></textarea>
       </div>
       <div className="form-group">
-        <button type="button" id="clearButton" className="button" onClick={handleClear}>
+        <button type="button" id="clearButton" className="clear-btn" onClick={handleClear}>
           Clear
         </button>
-        <button type="submit" id="submitButton" className="button">
+        <button type="submit" id="submitButton" className="submit-btn">
           Submit
         </button>
       </div>

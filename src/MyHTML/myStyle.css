@@ -81,7 +81,7 @@ body {
   .submit-btn {
     background-color: #4CAF50;
     color: white;
-    margin-right: 10px;
+    margin-left: 10px;
   }
   
   .submit-btn:hover {
