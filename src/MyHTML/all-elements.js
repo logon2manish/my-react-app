@@ -1,106 +1,138 @@
-import React from "react";
-import "./myStyle.css"
-const myElements = () => {
-    return(
-            <div>
-                <div className="form-container">
-                <h1>Web Form</h1>
-                <form id="webForm">
-                    {/* First Name and Last Name */}
-                    <div className="form-group">
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required />
-                    </div>
-            
-                    <div className="form-group">
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required />
-                    </div>
-            
-                    {/* Gender (Radio Buttons) */}
-                    <div className="form-group">
-                    <label>Gender:</label>
-                    <label>
-                        <input type="radio" name="gender" value="male" required /> Male
-                    </label>
-                    <label>
-                        <input type="radio" name="gender" value="female" required /> Female
-                    </label>
-                    <label>
-                        <input type="radio" name="gender" value="other" required /> Other
-                    </label>
-                    </div>
-            
-                    {/* Interests (Checkboxes) */}
-                    <div className="form-group">
-                    <label>Interests:</label>
-                    <label>
-                        <input type="checkbox" name="interests" value="sports" /> Sports
-                    </label>
-                    <label>
-                        <input type="checkbox" name="interests" value="music" /> Music
-                    </label>
-                    <label>
-                        <input type="checkbox" name="interests" value="reading" /> Reading
-                    </label>
-                    </div>
-            
-                    {/* Address */}
-                    <div className="form-group">
-                    <label htmlFor="addressLine1">Address Line 1:</label>
-                    <input type="text" id="addressLine1" name="addressLine1" placeholder="Enter address line 1" required />
-                    </div>
-            
-                    <div className="form-group">
-                    <label htmlFor="addressLine2">Address Line 2:</label>
-                    <input type="text" id="addressLine2" name="addressLine2" placeholder="Enter address line 2" />
-                    </div>
-            
-                    {/* Dropdowns for City, State, Country */}
-                    <div className="form-group">
-                    <label htmlFor="city">City:</label>
-                    <select id="city" name="city" required>
-                        <option value="">Select your city</option>
-                        <option value="newYork">New York</option>
-                        <option value="losAngeles">Los Angeles</option>
-                        <option value="chicago">Chicago</option>
-                    </select>
-                    </div>
-            
-                    <div className="form-group">
-                    <label htmlFor="state">State:</label>
-                    <select id="state" name="state" required>
-                        <option value="">Select your state</option>
-                        <option value="ny">New York</option>
-                        <option value="ca">California</option>
-                        <option value="il">Illinois</option>
-                    </select>
-                    </div>
-            
-                    <div className="form-group">
-                    <label htmlFor="country">Country:</label>
-                    <select id="country" name="country" required>
-                        <option value="">Select your country</option>
-                        <option value="us">United States</option>
-                        <option value="canada">Canada</option>
-                        <option value="mexico">Mexico</option>
-                    </select>
-                    </div>
-            
-                    {/* Notes */}
-                    <div className="form-group">
-                    <label htmlFor="notes">Notes:</label>
-                    <textarea id="notes" name="notes" rows="4" placeholder="Enter any additional notes"></textarea>
-                    </div>
-            
-                    {/* Buttons */}
-                    <div className="form-buttons">
-                    <button type="reset" className="clear-btn">Clear</button>
-                    <button type="submit" className="submit-btn">Submit</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-        );
+import React, { useState } from 'react';
+
+const WebForm = () => {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Form submitted: ' + JSON.stringify(formData));
+  };
+
+  const handleClear = () => {
+    setFormData({});
+  };
+
+  return (
+    <form id="webform" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="firstName">First Name:</label>
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          className="input-field"
+          value={formData.firstName || ''}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          className="input-field"
+          value={formData.lastName || ''}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group">
+        <label>Gender:</label>
+        <div>
+          <input
+            id="male"
+            type="radio"
+            name="gender"
+            value="male"
+            className="radio-button"
+            onChange={handleChange}
+          />
+          <label htmlFor="male">Male</label>
+          <input
+            id="female"
+            type="radio"
+            name="gender"
+            value="female"
+            className="radio-button"
+            onChange={handleChange}
+          />
+          <label htmlFor="female">Female</label>
+        </div>
+      </div>
+      <div className="form-group">
+        <label>Interests:</label>
+        <input
+          id="coding"
+          type="checkbox"
+          name="interests"
+          value="coding"
+          className="checkbox"
+          onChange={handleChange}
+        />
+        <label htmlFor="coding">Coding</label>
+        <input
+          id="music"
+          type="checkbox"
+          name="interests"
+          value="music"
+          className="checkbox"
+          onChange={handleChange}
+        />
+        <label htmlFor="music">Music</label>
+      </div>
+      <div className="form-group">
+        <label htmlFor="addressLine1">Address Line 1:</label>
+        <input
+          id="addressLine1"
+          type="text"
+          name="addressLine1"
+          className="input-field"
+          value={formData.addressLine1 || ''}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="city">City:</label>
+        <select
+          id="city"
+          name="city"
+          className="dropdown"
+          value={formData.city || ''}
+          onChange={handleChange}
+        >
+          <option value="">Select</option>
+          <option value="New York">New York</option>
+          <option value="Los Angeles">Los Angeles</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label htmlFor="notes">Notes:</label>
+        <textarea
+          id="notes"
+          name="notes"
+          className="textarea"
+          value={formData.notes || ''}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+      <div className="form-group">
+        <button type="button" id="clearButton" className="button" onClick={handleClear}>
+          Clear
+        </button>
+        <button type="submit" id="submitButton" className="button">
+          Submit
+        </button>
+      </div>
+    </form>
+  );
 };
-export default myElements;
+
+export default WebForm;
